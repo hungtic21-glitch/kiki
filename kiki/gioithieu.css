@@ -1,0 +1,44 @@
+/* Định dạng riêng cho trang Giới thiệu */
+.gioithieu-container {
+    max-width: 900px;
+    margin: 100px auto 50px auto; /* Margin top 100px để không bị dính vào Header */
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.gioithieu-container h1 {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #d32f2f;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.gioithieu-content section {
+    margin-bottom: 30px;
+}
+
+.gioithieu-content h2 {
+    color: #d32f2f;
+    margin-bottom: 10px;
+}
+
+.gioithieu-content p {
+    line-height: 1.8;
+    color: #444;
+    font-size: 1.1rem;
+    text-align: justify;
+}
+
+.gioithieu-content ul {
+    list-style: square;
+    margin-left: 30px;
+}
+
+.gioithieu-content ul li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
