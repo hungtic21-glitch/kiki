@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>268 Gaming - Thế Giới Gear Chuyên Nghiệp</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-link">
+            <div class="logo logo-image">
+                <img src="image/download (1).jfif"alt="268 Gaming Logo" 
+                     style="height: 100px; width: auto; display: block;">
+            </div>
+        </a>
+        
+        <nav class="desktop-nav">
+            <a href="index.html">Trang Chủ</a>
+            <a href="products.html">Sản Phẩm</a>
+            <a href="cart.html">Giỏ Hàng</a>
+            <a href="contact.html">Phản Hồi</a>
+            <a href="login.html">Đăng Nhập</a>
+        </nav>
+    
+        <div class="menu-toggle" id="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <div class="hero-banner">
+        <h1>BẬT CHẾ ĐỘ CHIẾN GAME<br><span>LÊN ĐỒ CỰC CHẤT</span></h1>
+        <p>Tự hào là hệ thống phân phối thiết bị ngoại vi chuyên nghiệp hàng đầu. Chúng tôi mang đến những dòng Chuột công thái học siêu nhẹ, Bàn phím cơ phản hồi tốc độ cao và Tai nghe chuẩn định vị E-Sports từ các thương hiệu lớn Razer, Logitech, Corsair. Vũ trang ngay hôm nay để làm chủ mọi trận combat!</p>
+        <button class="btn-main" onclick="location.href='products.html'">Mua Ngay</button>
+    </div>
+
+    <div class="container">
+        <div class="section-title">Sản Phẩm Nổi Bật</div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="image/msi_modern_14_f13mg_bac_01_66ddd_4e8c1cfbdc6e42309ebb2a32372c638d_grande.png" alt="Chuột Gaming">
+                <h3>Laptop MSI Modern 14 F13MG 466VN</h3>
+                <div class="price">14.190.000₫</div>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="showPmsi14()">MUA NGAY</button>
+                    <button class="btn-icon-cart" title="Thêm vào giỏ hàng">🛒</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/laptop-asus-expertbook-p3-p3405cva-nz0027w-1_c8c90bddf46c42a491694d4d5a4396d2_grande.jpg" alt="Bàn phím cơ">
+                <h3>Laptop Asus ExpertBook P3 P3405CVA-NZ0027W</h3>
+                <div class="price">18.990.000₫</div>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="showP3405()">MUA NGAY</button>
+                    <button class="btn-icon-cart" title="Thêm vào giỏ hàng">🛒</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/laptop-asus-expertbook-p1403cva-c5h16-50w-1_7b1ab501dd6b44bc822f0fcfc8d15315_grande.jpg" alt="Bàn phím cơ">
+                <h3>Laptop ASUS ExpertBook P1403CVA-C5H16-50W</h3>
+                <div class="price">25.990.000₫</div>
+                <div class="product-actions">
+    <button onclick="showP1403()">MUA NGAY</button>
+    <button class="btn-icon-cart" title="Thêm vào giỏ hàng">🛒</button>
+</div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/ava_f4961f3432f84674b7d37c5fbeb3aa17_grande.png" alt="Bàn phím cơ">
+                <h3>Laptop MSI Prestige 13 AI Evo A1MG 062VN</h3>
+                <div class="price">32.990.000₫</div>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="showMSIPrestige()">MUA NGAY</button>
+                    <button class="btn-icon-cart" title="Thêm vào giỏ hàng">🛒</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/51533_laptop_acer_aspire_lite_15_8d90e3271c08493284deba233319aa6c_grande.png" alt="Bàn phím cơ">
+                <h3>Laptop Acer Aspire Lite 15 AL15-48P-R5MN</h3>
+                <div class="price">15.990.000₫</div>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="showAcerAspire()">MUA NGAY</button>
+                    <button class="btn-icon-cart" title="Thêm vào giỏ hàng">🛒</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/laptop-acer-aspire-lite-15-al15-48p-r5mn-1_dadc4750986d42ba8be73abb69e9acbc_grande.jpg" alt="Tai nghe">
+                <h3>Laptop Acer Aspire Lite 15 AL15-48P-R5MN</h3>
+                <div class="price">15.990.000₫</div>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="showAcerAspire()">MUA NGAY</button>
+                    <button class="btn-icon-cart" title="Thêm vào giỏ hàng">🛒</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="floating-cart" onclick="location.href='cart.html'" title="Xem giỏ hàng của bạn">
+        <div class="floating-cart-icon">🛒</div>
+        <span class="cart-badge">1</span>
+    </div>
+    <script src="assets/js/main.js"></script>
+<div id="popupPmsi14" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePmsi14()">X</span>
+        <img src="image/msi_modern_14_f13mg_bac_01_66ddd_4e8c1cfbdc6e42309ebb2a32372c638d_grande.png" alt="Asus P1403">
+        <h2>Laptop MSI Modern 14 F13MG 466VN</h2>
+        <div class="popup-price">14.190.000₫</div>
+        <div class="popup-scroll-info">
+           <p>• CPU: Intel Core i3-1315U (Up to 4.5GHz)</p>
+<p>•   RAM: 8GB DDR5 5200MHz</p>
+<p>• Ổ cứng: 512GB SSD NVMe PCIe Gen4</p>
+<p>• Màn hình: 14 inch Full HD+ (1920x1200) IPS</p>
+<p>• Đồ họa: Intel UHD Graphics</p>
+<p>• Trọng lượng: 1.4 kg - Thiết kế thanh lịch</p>
+        </div>
+    </div>
+</div>
+
+<div id="popupP3405" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeP3405()">X</span>
+        <img src="image/laptop-asus-expertbook-p3-p3405cva-nz0027w-1_c8c90bddf46c42a491694d4d5a4396d2_grande.jpg" alt="Asus P3405">
+        <h2>Laptop Asus ExpertBook P3 P3405CVA</h2>
+        <div class="popup-price">18.990.000đ</div>
+        <div class="popup-scroll-info">
+            <p>• CPU: Intel Core i5-1335U (Up to 4.6GHz)</p>
+            <p>• RAM: 16GB DDR4 3200MHz</p>
+            <p>• Ổ cứng: 512GB SSD NVMe PCIe 4.0</p>
+            <p>• Màn hình: 14 inch WUXGA (1920x1200) chống chói</p>
+            <p>• Độ bền: Tiêu chuẩn quân đội MIL-STD 810H</p>
+            <p>• Bảo mật: Vân tay & Công tắc khóa camera</p>
+        </div>
+    </div>
+</div>
+
+<div id="popupP1403" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeP1403()">X</span>
+        <img src="image/laptop-asus-expertbook-p1403cva-c5h16-50w-1_7b1ab501dd6b44bc822f0fcfc8d15315_grande.jpg" alt="Asus P1403">
+        <h2>Laptop ASUS ExpertBook P1403CVA</h2>
+        <div class="popup-price">25.990.000đ</div>
+        <div class="popup-scroll-info">
+            <p>• CPU Intel Core i7-1355U</p>
+            <p>• RAM 16GB DDR4</p>
+            <p>• Ổ cứng SSD 512GB NVMe PCIe</p>
+            <p>• Card đồ họa Intel Iris Xe Graphics</p>
+            <p>• Màn hình 14 inch Full HD (1920x1080)</p>
+            <p>• Tấm nền IPS - Độ sáng 250 nits</p>
+            <p>• Pin 50Wh - Trọng lượng 1.4kg</p>
+        </div>
+    </div>
+</div>
+
+<div id="popupMSIPrestige" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeMSIPrestige()">X</span>
+        <img src="image/ava_f4961f3432f84674b7d37c5fbeb3aa17_grande.png" alt="MSI Prestige 13">
+        <h2>Laptop MSI Prestige 13 AI Evo A1M</h2>
+        <div class="popup-price">32.990.000đ</div>
+        <div class="popup-scroll-info">
+            <p>• CPU: Intel Core Ultra 7 155H (Tích hợp AI NPU)</p>
+            <p>• RAM: 16GB LPDDR5X (Onboard)</p>
+            <p>• Ổ cứng: 1TB SSD NVMe PCIe Gen4</p>
+            <p>• Màn hình: 13.3 inch 2.8K (2880x1800) OLED 100% DCI-P3</p>
+            <p>• Đồ họa: Intel Arc Graphics cực mạnh</p>
+            <p>• Siêu nhẹ: Chỉ 990g - Vỏ hợp kim Magie-Nhôm</p>
+        </div>
+    </div>
+</div>
+
+<div id="popupAcerAspire" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeAcerAspire()">X</span>
+        <img src="image/51533_laptop_acer_aspire_lite_15_8d90e3271c08493284deba233319aa6c_grande.png" alt="Acer Aspire Lite">
+        <h2>Laptop Acer Aspire Lite 15 AL15-51M / 48P</h2>
+        <div class="popup-price">15.990.000đ</div>
+        <div class="popup-scroll-info">
+            <p>• CPU: Intel Core i5-1135G7 / i5-1235U</p>
+            <p>• RAM: 8GB DDR4 (Dễ dàng nâng cấp)</p>
+            <p>• Ổ cứng: 512GB SSD NVMe PCIe</p>
+            <p>• Màn hình: 15.6 inch Full HD (1920x1080) viền mỏng</p>
+            <p>• Bàn phím: Full-size tích hợp bàn phím số riêng</p>
+            <p>• Trọng lượng: 1.6 kg - Bản lề mở phẳng 180 độ</p>
+        </div>
+    </div>
+</div>
+
+<div id="popupAcerAspire" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closeAcerAspire()">X</span>
+        <img src="image/laptop-acer-aspire-lite-15-al15-48p-r5mn-1_dadc4750986d42ba8be73abb69e9acbc_grande.jpg" alt="Acer Aspire Lite">
+        <h2>Laptop Acer Aspire Lite 15 AL15-51M / 48P</h2>
+        <div class="popup-price">15.990.000đ</div>
+        <div class="popup-scroll-info">
+            <p>• CPU: Intel Core i5-1135G7 / i5-1235U</p>
+            <p>• RAM: 8GB DDR4 (Dễ dàng nâng cấp)</p>
+            <p>• Ổ cứng: 512GB SSD NVMe PCIe</p>
+            <p>• Màn hình: 15.6 inch Full HD (1920x1080) viền mỏng</p>
+            <p>• Bàn phím: Full-size tích hợp bàn phím số riêng</p>
+            <p>• Trọng lượng: 1.6 kg - Bản lề mở phẳng 180 độ</p>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function showPmsi14() {
+        document.getElementById("popupPmsi14").style.display = "block";
+    }
+     function closePmsi14() {
+        document.getElementById("popupPmsi14").style.display = "none";
+    }
+
+     function showP3405() {
+        document.getElementById("popupP3405").style.display = "block";
+    }
+     function closeP3405() {
+        document.getElementById("popupP3405").style.display = "none";
+    }
+
+    function showP1403() {
+        document.getElementById("popupP1403").style.display = "block";
+    }
+    function closeP1403() {
+        document.getElementById("popupP1403").style.display = "none";
+    }
+
+       function showMSIPrestige() {
+        document.getElementById("popupMSIPrestige").style.display = "block";
+    }
+    function closeMSIPrestige() {
+        document.getElementById("popupMSIPrestige").style.display = "none";
+    }
+
+       function showAcerAspire() {
+        document.getElementById("popupAcerAspire").style.display = "block";
+    }
+    function closeAcerAspire() {
+        document.getElementById("popupAcerAspire").style.display = "none";
+    }
+
+     function showAcerAspire() {
+        document.getElementById("popupAcerAspire").style.display = "block";
+    }
+    function closeAcerAspire() {
+        document.getElementById("popupAcerAspire").style.display = "none";
+    }
+</script>
+</body>
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col font-info">
+            <div class="footer-logo">268 Gaming</div>
+            <p>Hệ thống cửa hàng chuyên kinh doanh thiết bị, linh kiện máy tính và phụ kiện gaming gear chính hãng hàng đầu Việt Nam.</p>
+            <p><strong>Địa chỉ:</strong> 268 Đường Ba Tháng Hai, Phường 12, Quận 10, TP. Hồ Chí Minh</p>
+            <p><strong>Hotline:</strong> 1800 2688 (Miễn phí)</p>
+            <p><strong>Email:</strong> cskh@268gaming.com</p>
+        </div>
+
+        <div class="footer-col">
+            <h3>Chính Sách Hỗ Trợ</h3>
+            <ul>
+                <li><a href="#">Chính sách bảo hành</a></li>
+                <li><a href="#">Chính sách đổi trả 1-1</a></li>
+                <li><a href="#">Phương thức thanh toán</a></li>
+                <li><a href="#">Chính sách vận chuyển toàn quốc</a></li>
+                <li><a href="#">Chính sách bảo mật thông tin</a></li>
+                <li><a href="admin-dashboard.html">ADMIN</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Danh Mục Sản Phẩm</h3>
+            <ul>
+                <li><a href="#">Bàn phím cơ Gaming</a></li>
+                <li><a href="#">Chuột chơi game cao cấp</a></li>
+                <li><a href="#">Tai nghe chuẩn E-Sports</a></li>
+                <li><a href="#">Ghế Gaming & Bàn Gaming</a></li>
+                <li><a href="#">Linh kiện PC Độ sẵn</a></li>
+                <li><a href="admin-dashboard.html">ADMIN</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Kết Nối Với Chúng Tôi</h3>
+            <p>Theo dõi các kênh truyền thông của 268 Gaming để không bỏ lỡ các giải đấu và chương trình khuyến mãi khủng.</p>
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/189EG1zUd1/?mibextid=wwXIfr" class="social-btn facebook" title="Facebook">F</a>
+                <a href="https://www.youtube.com/@CellphoneSOfficial" class="social-btn youtube" title="YouTube">Y</a>
+                <a href="https://www.instagram.com/an_thuyen3?igsh=NzZvdzZmaDkwNXAz" class="social-btn discord" title="ig">I</a>
+                <a href="https://www.tiktok.com/@278lvh" class="social-btn tiktok" title="TikTok">T</a>
+            </div>
+
+            <div class="bct-certification" style="margin-top: 20px;">
+                <span style="color: #00d2d3; font-weight: bold; border: 2px solid #00d2d3; padding: 5px 10px; border-radius: 4px; display: inline-block; font-size: 12px; letter-spacing: 1px;">
+                    ĐÃ ĐĂNG KÝ BỘ CÔNG THƯƠNG
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 - Bản quyền thuộc về Nhóm 11 - Lớp WE24-01 | Website phục vụ mục đích học tập bài tập lớn.</p>
+    </div>
+</footer>
+</html>
