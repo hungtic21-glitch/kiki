@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng - 268 Gaming</title>
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-link">
+           <div class="logo logo-image">
+               <img src="image/download (1).jfif" alt="268 Gaming Logo" style="height: 100px; width: auto; display: block;">
+           </div>
+        </a>
+        
+        <nav class="desktop-nav">
+            <a href="index.html">Trang Chủ</a>
+            <a href="products.html">Sản Phẩm</a>
+            <a href="cart.html" class="active">Giỏ Hàng</a>
+            <a href="contact.html">Phản Hồi</a>
+            <a href="login.html">Đăng Nhập</a>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>🛒 Giỏ Hàng</h1>
+
+        <div id="cartList"></div>
+
+        <div class="summary">
+            <h2>📦 Thông Tin Đơn Hàng</h2>
+            <div class="checkout-info">
+                <p><span>Số sản phẩm:</span> <strong id="totalItems">0</strong></p>
+                <p><span>Tạm tính:</span> <strong id="subtotal">0đ</strong></p>
+                <p><span>Phí vận chuyển:</span> <strong style="color: #22c55e;">Miễn phí</strong></p>
+                <p class="grand-total">
+                    <span>Tổng thanh toán:</span>
+                    <strong id="grandTotal" style="color: #ff2a5f; font-size: 1.2rem;">0đ</strong>
+                </p>
+            </div>
+            
+            <h3>💳 Phương Thức Thanh Toán</h3>
+            <div class="payment-methods">
+                <label class="payment-option">
+                    <input type="radio" name="payment" value="cod">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    Thanh toán khi nhận hàng (COD)
+                </label>
+        
+                <label class="payment-option">
+                    <input type="radio" name="payment" value="card">
+                    <i class="fa-solid fa-credit-card"></i>
+                    Thẻ ATM / Visa / Mastercard
+                </label>
+        
+                <label class="payment-option">
+                    <input type="radio" name="payment" value="qr" checked>
+                    <i class="fa-solid fa-qrcode"></i>
+                    Quét QR Banking
+                </label>
+            </div>
+        
+            <button class="checkout-btn" id="checkoutBtn">
+                XÁC NHẬN THANH TOÁN
+            </button>
+        </div>
+    </div>
+
+    <div id="qrModal" class="qr-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center;">
+        <div class="qr-modal-card" style="background: #1a1a1a; padding: 30px; border-radius: 20px; border: 1px solid #ff2a5f; text-align: center; max-width: 400px; position: relative;">
+            <button class="close-qr-btn" id="closeQrBtn" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h2 style="color: #fff; margin-bottom: 5px;">QUÉT MÃ THANH TOÁN</h2>
+            <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 20px;">Sử dụng App Ngân hàng hoặc Ví điện tử để quét mã</p>
+            
+            <div style="background: #fff; padding: 15px; border-radius: 10px; display: inline-block; margin-bottom: 20px;">
+                <img id="vietQrImg" src="" alt="Mã QR" style="width: 220px; height: 220px; object-fit: contain;">
+            </div>
+            
+            <div style="background: #252525; padding: 15px; border-radius: 8px; text-align: left; margin-bottom: 20px; border-left: 3px solid #00f2fe;">
+                <p style="margin: 5px 0; color: #ccc;">Nội dung: <strong id="qrDesc" style="color: #fff;"></strong></p>
+                <p style="margin: 5px 0; color: #ccc;">Số tiền: <strong id="qrAmount" style="color: #00f2fe;">0đ</strong></p>
+            </div>
+            
+            <button id="btnDonePay" style="width: 100%; padding: 12px; background: #ff2a5f; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">TÔI ĐÃ THANH TOÁN XONG</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function formatPrice(price){
+            return price.toLocaleString("vi-VN") + "₫";
+        }
+
+        function renderCart(){
+            const cartList = document.getElementById("cartList");
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            cartList.innerHTML = "";
+
+            if(cart.length === 0){
+                cartList.innerHTML = `<div class="empty" style="text-align:center; padding: 40px; color: #aaa;">Giỏ hàng đang trống</div>`;
+                document.getElementById("totalItems").innerText = "0";
+                document.getElementById("subtotal").innerText = "0₫";
+                document.getElementById("grandTotal").innerText = "0₫";
+                return;
+            }
+
+            cart.forEach(item => {
+                let itemPrice = parseInt(item.price); 
+                let itemQty = parseInt(item.quantity);
+
+                totalQty += itemQty;
+                totalPrice += itemQty * itemPrice;
+
+                cartList.innerHTML += `
+                <div class="cart-item" style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #333; padding: 15px 0;">
+                    <img src="${item.image}" style="width: 80px; height: 80px; object-fit: contain; background: #fff; border-radius: 8px;">
+                    <div class="info" style="flex: 2; padding: 0 15px;">
+                        <h3 style="font-size: 1rem; margin-bottom: 5px;">${item.name}</h3>
+                        <p style="color: #aaa;">${formatPrice(itemPrice)}</p>
+                    </div>
+                    <div class="quantity" style="display:flex; align-items:center; gap:10px;">
+                        <button onclick="changeQty(${item.id},-1)" style="padding: 5px 10px; cursor: pointer;">−</button>
+                        <span>${itemQty}</span>
+                        <button onclick="changeQty(${item.id},1)" style="padding: 5px 10px; cursor: pointer;">+</button>
+                    </div>
+                    <div class="item-total" style="flex: 1; text-align: right; font-weight: bold; color: #00f2fe;">
+                        ${formatPrice(itemQty * itemPrice)}
+                    </div>
+                    <button class="delete" onclick="removeItem(${item.id})" style="margin-left: 15px; color: #ef4444; background: none; border: none; cursor: pointer;">Xóa</button>
+                </div>`;
+            });
+
+            document.getElementById("totalItems").innerText = totalQty;
+            document.getElementById("subtotal").innerText = formatPrice(totalPrice);
+            document.getElementById("grandTotal").innerText = formatPrice(totalPrice);
+        }
+
+        function changeQty(id, value){
+            cart = cart.map(item => {
+                if(item.id === id){
+                    item.quantity = parseInt(item.quantity) + value;
+                    if(item.quantity < 1) item.quantity = 1;
+                }
+                return item;
+            });
+            renderCart();
+        }
+
+        function removeItem(id){
+            cart = cart.filter(item => item.id !== id);
+            renderCart();
+        }
+
+        // Fetch dữ liệu từ API Backend
+        async function loadCartFromDB() {
+            try {
+                // Đổi link này thành file PHP của bro khi làm Backend
+                const response = await fetch('http://localhost/268gaming/api_get_cart.php'); 
+                
+                if (!response.ok) {
+                    throw new Error("Lỗi HTTP: " + response.status);
+                }
+                
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    cart = result.data; 
+                    renderCart();       
+                } else {
+                    console.error("Lỗi từ server:", result.message);
+                    document.getElementById("cartList").innerHTML = `<div style="text-align:center; padding: 20px; color: red;">Lỗi tải giỏ hàng: ${result.message}</div>`;
+                }
+            } catch (error) {
+                console.error("Lỗi kết nối Backend:", error);
+                // Dữ liệu mẫu hiển thị phòng hờ khi Backend chưa chạy
+                cart = [
+                    { id:1, name:"Laptop Gaming MSI (Data Mẫu)", price:14190000, quantity:1, image:"image/msi_modern_14_f13mg_bac_01_66ddd_4e8c1cfbdc6e42309ebb2a32372c638d_grande.png" },
+                    { id:2, name:"Laptop Asus ExpertBook (Data Mẫu)", price:18990000, quantity:1, image:"image/laptop-asus-expertbook-p3-p3405cva-nz0027w-1_c8c90bddf46c42a491694d4d5a4396d2_grande.jpg" }
+                ];
+                renderCart();
+            }
+        }
+
+        loadCartFromDB();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const qrModal = document.getElementById('qrModal');
+            const closeQrBtn = document.getElementById('closeQrBtn');
+            const btnDonePay = document.getElementById('btnDonePay');
+            
+            const vietQrImg = document.getElementById('vietQrImg');
+            const qrAmount = document.getElementById('qrAmount');
+            const qrDesc = document.getElementById('qrDesc');
+
+            // CẤU HÌNH NGÂN HÀNG CỦA BRO Ở ĐÂY
+            const BANK_ID = "MB"; 
+            const ACCOUNT_NO = "123456789999"; 
+            const ACCOUNT_NAME = "NGUYEN VAN A";
+
+            checkoutBtn.addEventListener('click', () => {
+                const totalText = document.getElementById('grandTotal').innerText;
+                const amount = parseInt(totalText.replace(/[^0-9]/g, ''));
+
+                if (!amount || amount === 0) {
+                    alert('Giỏ hàng trống, không thể thanh toán!');
+                    return;
+                }
+
+                const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+                
+                if (paymentMethod === 'cod') {
+                    alert('Bạn đã chọn thanh toán khi nhận hàng. Đơn hàng đang được xử lý!');
+                    cart = [];
+                    renderCart();
+                    return;
+                }
+
+                // Chạy QR
+                const orderId = "DH" + Math.floor(100000 + Math.random() * 900000);
+                const description = `THANH TOAN ${orderId}`;
+                const qrUrl = `https://img.vietqr.io/image/${BANK_ID}-${ACCOUNT_NO}-compact2.jpg?amount=${amount}&addInfo=${encodeURIComponent(description)}&accountName=${encodeURIComponent(ACCOUNT_NAME)}`;
+
+                vietQrImg.src = qrUrl;
+                qrAmount.innerText = totalText;
+                qrDesc.innerText = description;
+                
+                qrModal.style.display = 'flex';
+            });
+
+            closeQrBtn.addEventListener('click', () => {
+                qrModal.style.display = 'none';
+            });
+
+            btnDonePay.addEventListener('click', () => {
+                alert('⚡ Hệ thống đã ghi nhận yêu cầu. Đơn hàng của bạn sẽ được xử lý sớm nhất!');
+                qrModal.style.display = 'none';
+                cart = []; // Reset giỏ hàng
+                renderCart();
+            });
+        });
+    </script>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col font-info">
+                <div class="footer-logo">268 Gaming</div>
+                <p>Hệ thống cửa hàng chuyên kinh doanh thiết bị, linh kiện máy tính và phụ kiện gaming gear chính hãng hàng đầu Việt Nam.</p>
+                <p><strong>Địa chỉ:</strong> 268 Đường Ba Tháng Hai, Phường 12, Quận 10, TP. Hồ Chí Minh</p>
+                <p><strong>Hotline:</strong> 1800 2688 (Miễn phí)</p>
+                <p><strong>Email:</strong> cskh@268gaming.com</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Chính Sách Hỗ Trợ</h3>
+                <ul>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Chính sách đổi trả 1-1</a></li>
+                    <li><a href="#">Phương thức thanh toán</a></li>
+                    <li><a href="#">Chính sách vận chuyển toàn quốc</a></li>
+                    <li><a href="#">Chính sách bảo mật thông tin</a></li>
+                    <li><a href="admin-dashboard.html">ADMIN</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Danh Mục Sản Phẩm</h3>
+                <ul>
+                    <li><a href="#">Bàn phím cơ Gaming</a></li>
+                    <li><a href="#">Chuột chơi game cao cấp</a></li>
+                    <li><a href="#">Tai nghe chuẩn E-Sports</a></li>
+                    <li><a href="#">Ghế Gaming & Bàn Gaming</a></li>
+                    <li><a href="#">Linh kiện PC Độ sẵn</a></li>
+                    <li><a href="admin-dashboard.html">ADMIN</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Kết Nối Với Chúng Tôi</h3>
+                <p>Theo dõi các kênh truyền thông của 268 Gaming để không bỏ lỡ các giải đấu và chương trình khuyến mãi khủng.</p>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/189EG1zUd1/?mibextid=wwXIfr" class="social-btn facebook" title="Facebook">F</a>
+                    <a href="https://www.youtube.com/@CellphoneSOfficial" class="social-btn youtube" title="YouTube">Y</a>
+                    <a href="https://www.instagram.com/an_thuyen3?igsh=NzZvdzZmaDkwNXAz" class="social-btn discord" title="ig">I</a>
+                    <a href="https://www.tiktok.com/@278lvh" class="social-btn tiktok" title="TikTok">T</a>
+                </div>
+
+                <div class="bct-certification" style="margin-top: 20px;">
+                    <span style="color: #00d2d3; font-weight: bold; border: 2px solid #00d2d3; padding: 5px 10px; border-radius: 4px; display: inline-block; font-size: 12px; letter-spacing: 1px;">
+                        ĐÃ ĐĂNG KÝ BỘ CÔNG THƯƠNG
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 - Bản quyền thuộc về Nhóm 11 - Lớp WE24-01 | Website phục vụ mục đích học tập bài tập lớn.</p>
+        </div>
+    </footer>
+</body>
+</html>
