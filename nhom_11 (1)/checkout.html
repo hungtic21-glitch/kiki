@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán Đơn Hàng - 268 Gaming</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .checkout-wrapper {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        .checkout-form {
+            flex: 2;
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 42, 95, 0.2);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        .order-summary {
+            flex: 1;
+            background-color: #111;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #00f2fe;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ccc;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px;
+            background-color: #0a0a0a;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #ff2a5f;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 42, 95, 0.2);
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #333;
+            color: #ddd;
+        }
+        .btn-submit-order {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff2a5f 0%, #9b00e8 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .btn-submit-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 42, 95, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-link">
+           <div class="logo logo-image">
+               <img src="image/download (1).jfif" alt="268 Gaming Logo" style="height: 100px; width: auto; display: block;">
+           </div>
+        </a>
+        
+        <nav class="desktop-nav">
+            <a href="index.html">Trang Chủ</a>
+            <a href="products.html">Sản Phẩm</a>
+            <a href="cart.html" class="active">Giỏ Hàng</a>
+            <a href="contact.html">Phản Hồi</a>
+            <a href="login.html">Đăng Nhập</a>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-title">Thanh Toán Đơn Hàng</div>
+        
+        <div class="checkout-wrapper">
+            <div class="checkout-form">
+                <h3 style="margin-top:0; margin-bottom:25px; color:#ff2a5f; font-size: 1.5rem;"><i class="fa-solid fa-truck-fast"></i> Thông tin giao hàng</h3>
+                
+                <div class="form-group">
+                    <label>Họ và Tên người nhận *</label>
+                    <input type="text" id="custName" placeholder="Nhập đầy đủ họ và tên" required>
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại *</label>
+                    <input type="tel" id="custPhone" placeholder="Nhập số điện thoại nhận hàng" required>
+                </div>
+                <div class="form-group">
+                    <label>Địa chỉ nhận hàng chi tiết *</label>
+                    <input type="text" id="custAddress" placeholder="Số nhà, tên đường, phường/xã, quận/huyện" required>
+                </div>
+                <div class="form-group">
+                    <label>Phương thức thanh toán</label>
+                    <select id="paymentMethod">
+                        <option value="COD">Thanh toán khi nhận hàng (COD)</option>
+                        <option value="BANKING">Chuyển khoản ngân hàng (Qua mã QR)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h3 style="margin-top:0; margin-bottom:25px; color:#00f2fe; font-size: 1.5rem;"><i class="fa-solid fa-clipboard-list"></i> Đơn hàng của bạn</h3>
+                
+                <div id="orderSummaryList">
+                    <div style="text-align: center; color: #888;">Đang tải dữ liệu...</div>
+                </div>
+
+                <div class="summary-item" style="border:none; padding-top: 10px;">
+                    <span>Phí vận chuyển</span>
+                    <span style="color: #22c55e; font-weight: bold;">Miễn phí</span>
+                </div>
+                <div class="summary-item" style="border:none; font-size:1.2rem; font-weight:bold; margin-bottom: 0;">
+                    <span>Tổng tiền:</span>
+                    <span id="checkoutTotal" style="color: #ff2a5f; font-size: 1.5rem;">0 đ</span>
+                </div>
+                
+                <button class="btn-submit-order" id="btnSubmitOrder">XÁC NHẬN ĐẶT HÀNG</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        // 1. Lấy dữ liệu giỏ hàng từ folder nhom_11
+        async function loadCartForCheckout() {
+            try {
+                const response = await fetch('http://localhost/nhom_11/api_get_cart.php');
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.status === 'success') {
+                        cart = result.data;
+                    }
+                }
+            } catch (error) {
+                console.log("Đang chạy chế độ Demo (Không có Backend)");
+                cart = [
+                    { id:1, name:"Laptop Gaming MSI (Data Tạm)", price:14190000, quantity:1 },
+                    { id:2, name:"Chuột Razer DeathAdder V3 (Data Tạm)", price:1890000, quantity:2 }
+                ];
+            }
+            renderOrderSummary();
+        }
+
+        // 2. Render danh sách món hàng ra khối Hóa đơn
+        function renderOrderSummary() {
+            const summaryList = document.getElementById('orderSummaryList');
+            let total = 0;
+            summaryList.innerHTML = '';
+
+            if(cart.length === 0) {
+                summaryList.innerHTML = '<div style="color:#aaa; text-align:center;">Giỏ hàng đang trống!</div>';
+                document.getElementById('checkoutTotal').innerText = '0 đ';
+                return;
+            }
+
+            cart.forEach(item => {
+                const itemPrice = parseInt(item.price);
+                const itemQty = parseInt(item.quantity);
+                const itemTotal = itemPrice * itemQty;
+                total += itemTotal;
+
+                summaryList.innerHTML += `
+                    <div class="summary-item">
+                        <span><strong style="color:#00f2fe;">${itemQty}x</strong> ${item.name}</span>
+                        <span>${itemTotal.toLocaleString('vi-VN')} đ</span>
+                    </div>
+                `;
+            });
+
+            document.getElementById('checkoutTotal').innerText = total.toLocaleString('vi-VN') + ' đ';
+        }
+
+        // 3. Xử lý khi khách bấm nút "Xác Nhận Đặt Hàng" gửi về nhom_11
+        document.getElementById('btnSubmitOrder').addEventListener('click', async () => {
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const payment = document.getElementById('paymentMethod').value;
+
+            if(!name || !phone || !address) {
+                alert('⚠️ Vui lòng điền đầy đủ Thông tin giao hàng!');
+                return;
+            }
+
+            if(cart.length === 0) {
+                alert('⚠️ Giỏ hàng của bạn đang trống, không thể đặt hàng!');
+                return;
+            }
+
+            const orderPayload = {
+                customer_name: name,
+                phone: phone,
+                address: address,
+                payment_method: payment,
+                cart: cart
+            };
+
+            try {
+                const response = await fetch('http://localhost/nhom_11/api_checkout.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderPayload)
+                });
+
+                const result = await response.json();
+                
+                if(result.status === 'success') {
+                    alert("🎉 ĐẶT HÀNG THÀNH CÔNG!\nMã đơn hàng của bạn là: #" + result.order_id);
+                    window.location.href = 'index.html'; 
+                } else {
+                    alert("❌ Đặt hàng thất bại: " + result.message);
+                }
+            } catch (error) {
+                console.error("Lỗi mạng:", error);
+                alert("🎉 ĐẶT HÀNG THÀNH CÔNG!\n(Thông báo từ chế độ Offline Demo)");
+                window.location.href = 'index.html';
+            }
+        });
+
+        loadCartForCheckout();
+    </script>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col font-info">
+                <div class="footer-logo">268 Gaming</div>
+                <p>Hệ thống cửa hàng chuyên kinh doanh thiết bị, linh kiện máy tính và phụ kiện gaming gear chính hãng hàng đầu Việt Nam.</p>
+                <p><strong>Địa chỉ:</strong> 268 Đường Ba Tháng Hai, Phường 12, Quận 10, TP. Hồ Chí Minh</p>
+                <p><strong>Hotline:</strong> 1800 2688 (Miễn phí)</p>
+                <p><strong>Email:</strong> cskh@268gaming.com</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Chính Sách Hỗ Trợ</h3>
+                <ul>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Chính sách đổi trả 1-1</a></li>
+                    <li><a href="#">Phương thức thanh toán</a></li>
+                    <li><a href="#">Chính sách vận chuyển toàn quốc</a></li>
+                    <li><a href="#">Chính sách bảo mật thông tin</a></li>
+                    <li><a href="admin-dashboard.html">ADMIN</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Danh Mục Sản Phẩm</h3>
+                <ul>
+                    <li><a href="#">Bàn phím cơ Gaming</a></li>
+                    <li><a href="#">Chuột chơi game cao cấp</a></li>
+                    <li><a href="#">Tai nghe chuẩn E-Sports</a></li>
+                    <li><a href="#">Ghế Gaming & Bàn Gaming</a></li>
+                    <li><a href="#">Linh kiện PC Độ sẵn</a></li>
+                    <li><a href="admin-dashboard.html">ADMIN</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Kết Nối Với Chúng Tôi</h3>
+                <p>Theo dõi các kênh truyền thông của 268 Gaming để không bỏ lỡ các giải đấu và chương trình khuyến mãi khủng.</p>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/189EG1zUd1/?mibextid=wwXIfr" class="social-btn facebook" title="Facebook">F</a>
+                    <a href="https://www.youtube.com/@CellphoneSOfficial" class="social-btn youtube" title="YouTube">Y</a>
+                    <a href="https://www.instagram.com/an_thuyen3?igsh=NzZvdzZmaDkwNXAz" class="social-btn discord" title="ig">I</a>
+                    <a href="https://www.tiktok.com/@278lvh" class="social-btn tiktok" title="TikTok">T</a>
+                </div>
+
+                <div class="bct-certification" style="margin-top: 20px;">
+                    <span style="color: #00d2d3; font-weight: bold; border: 2px solid #00d2d3; padding: 5px 10px; border-radius: 4px; display: inline-block; font-size: 12px; letter-spacing: 1px;">
+                        ĐÃ ĐĂNG KÝ BỘ CÔNG THƯƠNG
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 - Bản quyền thuộc về Nhóm 11 - Lớp WE24-01 | Website phục vụ mục đích học tập bài tập lớn.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
