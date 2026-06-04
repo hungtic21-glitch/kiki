@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>268 Gaming - Thế Giới Gear Chuyên Nghiệp</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-link">
+           <div class="logo logo-image">
+               <img src="image/download (1).jfif" alt="268 Gaming Logo" style="height: 100px; width: auto; display: block;">
+           </div>
+        </a>
+        <nav class="desktop-nav">
+            <a href="index.html" class="active">Trang Chủ</a>
+            <a href="products.html">Sản Phẩm</a>
+            <a href="cart.html">Giỏ Hàng</a>
+            <a href="contact.html">Phản Hồi</a>
+            <a href="login.html">Đăng Nhập</a>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <div class="hero-banner">
+        <h1>BẬT CHẾ ĐỘ CHIẾN GAME<br><span>LÊN ĐỒ CỰC CHẤT</span></h1>
+        <p>Tự hào là hệ thống phân phối thiết bị ngoại vi chuyên nghiệp hàng đầu. Vũ trang ngay hôm nay để làm chủ mọi trận combat!</p>
+        <button class="btn-main" onclick="location.href='products.html'">Mua Ngay</button>
+    </div>
+
+    <div class="container">
+        <div class="section-title">Sản Phẩm Nổi Bật</div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="image/msi_modern_14_f13mg_bac_01_66ddd_4e8c1cfbdc6e42309ebb2a32372c638d_grande.png" alt="Laptop MSI">
+                <h3>Laptop MSI Modern 14 F13MG 466VN</h3>
+                <div class="price">14.190.000₫</div>
+                <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="buy-btn" onclick="showPmsi14()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">XEM CHI TIẾT</button>
+                    <button class="btn-icon-cart" onclick="addToCartFromHome(1, 'Laptop MSI Modern 14 F13MG 466VN', 14190000, 'image/msi_modern_14_f13mg_bac_01_66ddd_4e8c1cfbdc6e42309ebb2a32372c638d_grande.png')" style="flex: 1; padding: 10px; background: #ff2a5f; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">🛒 MUA</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/laptop-asus-expertbook-p3-p3405cva-nz0027w-1_c8c90bddf46c42a491694d4d5a4396d2_grande.jpg" alt="Laptop Asus P3">
+                <h3>Laptop Asus ExpertBook P3 P3405CVA-NZ0027W</h3>
+                <div class="price">18.990.000₫</div>
+                <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="buy-btn" onclick="showP3405()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">XEM CHI TIẾT</button>
+                    <button class="btn-icon-cart" onclick="addToCartFromHome(2, 'Laptop Asus ExpertBook P3 P3405CVA-NZ0027W', 18990000, 'image/laptop-asus-expertbook-p3-p3405cva-nz0027w-1_c8c90bddf46c42a491694d4d5a4396d2_grande.jpg')" style="flex: 1; padding: 10px; background: #ff2a5f; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">🛒 MUA</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/laptop-asus-expertbook-p1403cva-c5h16-50w-1_7b1ab501dd6b44bc822f0fcfc8d15315_grande.jpg" alt="Laptop Asus P1403">
+                <h3>Laptop ASUS ExpertBook P1403CVA-C5H16-50W</h3>
+                <div class="price">25.990.000₫</div>
+                <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="buy-btn" onclick="showP1403()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">XEM CHI TIẾT</button>
+                    <button class="btn-icon-cart" onclick="addToCartFromHome(3, 'Laptop ASUS ExpertBook P1403CVA-C5H16-50W', 25990000, 'image/laptop-asus-expertbook-p1403cva-c5h16-50w-1_7b1ab501dd6b44bc822f0fcfc8d15315_grande.jpg')" style="flex: 1; padding: 10px; background: #ff2a5f; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">🛒 MUA</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="image/ava_f4961f3432f84674b7d37c5fbeb3aa17_grande.png" alt="Laptop MSI Prestige">
+                <h3>Laptop MSI Prestige 13 AI Evo A1MG 062VN</h3>
+                <div class="price">32.990.000₫</div>
+                <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="buy-btn" onclick="showMSIPrestige()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">XEM CHI TIẾT</button>
+                    <button class="btn-icon-cart" onclick="addToCartFromHome(4, 'Laptop MSI Prestige 13 AI Evo A1MG 062VN', 32990000, 'image/ava_f4961f3432f84674b7d37c5fbeb3aa17_grande.png')" style="flex: 1; padding: 10px; background: #ff2a5f; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">🛒 MUA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="floating-cart" onclick="location.href='cart.html'" title="Xem giỏ hàng của bạn" style="position: fixed; bottom: 20px; right: 20px; background: #ff2a5f; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 999;">
+        <div class="floating-cart-icon" style="color: #fff; font-size: 1.5rem;">🛒</div>
+    </div>
+
+    <div id="popupPmsi14" class="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999;">
+        <div class="popup-content" style="background:#1a1a1a; padding:30px; max-width:450px; margin:80px auto; border-radius:12px; border:1px solid #ff2a5f; text-align:center; color:#fff; position: relative;">
+            <span class="close-btn" onclick="closePmsi14()" style="position: absolute; top: 15px; right: 20px; cursor:pointer; font-size:2rem; color: #aaa;">&times;</span>
+            <img src="image/msi_modern_14_f13mg_bac_01_66ddd_4e8c1cfbdc6e42309ebb2a32372c638d_grande.png" style="width:180px; background: #fff; padding: 10px; border-radius: 8px;">
+            <h2 style="margin-top: 15px; font-size: 1.3rem; color: #00f2fe;">Laptop MSI Modern 14</h2>
+            <div class="popup-price" style="color:#ff2a5f; font-weight:bold; font-size: 1.2rem; margin:10px 0;">14.190.000₫</div>
+            <div style="text-align: left; background: #222; padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.6;">
+                <p>• Dòng laptop văn phòng mỏng nhẹ, thanh lịch.</p>
+                <p>• Vỏ máy làm bằng nhựa giả kim loại hoặc nhôm cao cấp.</p>
+                <p>• Trang bị chip Intel Core i3/i5 thế hệ 12 hoặc 13 mạnh mẽ.</p>
+                <p>• RAM 8GB/16GB DDR5 xử lý mượt mà tác vụ học tập.</p>
+                <p>• Cân tốt các ứng dụng văn phòng và đồ họa 2D cơ bản.</p>
+                <p>• Màn hình 14" Full HD IPS góc nhìn rộng, chân thực.</p>
+                <p>• Tích hợp đèn nền bàn phím tiện lợi khi làm việc ban đêm.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="popupP3405" class="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999;">
+        <div class="popup-content" style="background:#1a1a1a; padding:30px; max-width:450px; margin:80px auto; border-radius:12px; border:1px solid #ff2a5f; text-align:center; color:#fff; position: relative;">
+            <span class="close-btn" onclick="closeP3405()" style="position: absolute; top: 15px; right: 20px; cursor:pointer; font-size:2rem; color: #aaa;">&times;</span>
+            <img src="image/laptop-asus-expertbook-p3-p3405cva-nz0027w-1_c8c90bddf46c42a491694d4d5a4396d2_grande.jpg" style="width:180px; background: #fff; padding: 10px; border-radius: 8px;">
+            <h2 style="margin-top: 15px; font-size: 1.3rem; color: #00f2fe;">Laptop Asus ExpertBook P3</h2>
+            <div class="popup-price" style="color:#ff2a5f; font-weight:bold; font-size: 1.2rem; margin:10px 0;">18.990.000₫</div>
+            <div style="text-align: left; background: #222; padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.6;">
+                <p>• Laptop phân khúc doanh nghiệp hướng tới độ bền bỉ.</p>
+                <p>• Thiết kế đạt tiêu chuẩn độ bền quân đội Mỹ MIL-STD 810H.</p>
+                <p>• Cấu hình cao với chip Intel Core i5-1335U thế hệ mới.</p>
+                <p>• RAM sẵn 16GB chạy đa nhiệm mượt, không lo giật lag.</p>
+                <p>• Màn hình chất lượng cao cùng pin ấn tượng.</p>
+                <p>• Tính bảo mật cực cao với cảm biến vân tay một chạm.</p>
+                <p>• Có gạt che camera vật lý bảo vệ tối đa quyền riêng tư.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="popupP1403" class="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999;">
+        <div class="popup-content" style="background:#1a1a1a; padding:30px; max-width:450px; margin:80px auto; border-radius:12px; border:1px solid #ff2a5f; text-align:center; color:#fff; position: relative;">
+            <span class="close-btn" onclick="closeP1403()" style="position: absolute; top: 15px; right: 20px; cursor:pointer; font-size:2rem; color: #aaa;">&times;</span>
+            <img src="image/laptop-asus-expertbook-p1403cva-c5h16-50w-1_7b1ab501dd6b44bc822f0fcfc8d15315_grande.jpg" style="width:180px; background: #fff; padding: 10px; border-radius: 8px;">
+            <h2 style="margin-top: 15px; font-size: 1.3rem; color: #00f2fe;">ASUS ExpertBook P1403CVA</h2>
+            <div class="popup-price" style="color:#ff2a5f; font-weight:bold; font-size: 1.2rem; margin:10px 0;">25.990.000₫</div>
+            <div style="text-align: left; background: #222; padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.6;">
+                <p>• **Màn hình bảo vệ mắt:** Kích thước 14" Full HD chống chói.</p>
+                <p>• **Ổ cứng SSD cực nhanh:** Dung lượng 512GB mở máy tức thì.</p>
+                <p>• **Kết nối đầy đủ:** Có cổng Type-C, USB 3.2, HDMI tiện lợi.</p>
+                <p>• **Bàn phím chống tràn nước:** Gõ êm, hạn chế hư hại do nước đổ.</p>
+                <p>• **Bản lề duỗi thẳng 180 độ:** Mở phẳng hoàn toàn tiện làm việc nhóm.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="popupPrestige" class="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999;">
+        <div class="popup-content" style="background:#1a1a1a; padding:30px; max-width:450px; margin:80px auto; border-radius:12px; border:1px solid #ff2a5f; text-align:center; color:#fff; position: relative;">
+            <span class="close-btn" onclick="closeMSIPrestige()" style="position: absolute; top: 15px; right: 20px; cursor:pointer; font-size:2rem; color: #aaa;">&times;</span>
+            <img src="image/ava_f4961f3432f84674b7d37c5fbeb3aa17_grande.png" style="width:180px; background: #fff; padding: 10px; border-radius: 8px;">
+            <h2 style="margin-top: 15px; font-size: 1.3rem; color: #00f2fe;">MSI Prestige 13 AI Evo</h2>
+            <div class="popup-price" style="color:#ff2a5f; font-weight:bold; font-size: 1.2rem; margin:10px 0;">32.990.000₫</div>
+            <div style="text-align: left; background: #222; padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.6;">
+                <p>• Dòng máy siêu cao cấp tích hợp vi xử lý AI Intel Core Ultra mới nhất.</p>
+                <p>• Trọng lượng siêu nhẹ chưa đến 1kg, vỏ hợp kim Magie-Nhôm siêu bền.</p>
+                <p>• Màn hình OLED đỉnh cao siêu nét, độ chuẩn màu 100% DCI-P3 chuyên nghiệp.</p>
+                <p>• Phù hợp cho lập trình viên, doanh nhân và designer cao cấp.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container" style="display: flex; justify-content: space-between; padding: 40px 20px; background: #111; color: #ccc;">
+            <div class="footer-col">
+                <h3 style="color: #fff; margin-bottom: 15px;">Về 268 Gaming</h3>
+                <p style="font-size: 0.9rem; max-width: 300px;">Hệ thống phân phối Laptop Gaming, Gear High-End và linh kiện máy tính chính hãng hàng đầu.</p>
+            </div>
+            <div class="footer-col">
+                <h3 style="color: #fff; margin-bottom: 15px;">Chính Sách Hỗ Trợ</h3>
+                <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                    <li style="margin-bottom: 8px;"><a href="#" style="color: #ccc; text-decoration: none;">Chính sách bảo hành</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#" style="color: #ccc; text-decoration: none;">Chính sách đổi trả 1-1</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom" style="text-align: center; padding: 20px; background: #0a0a0a; color: #555; font-size: 0.85rem;">
+            <p>&copy; 2026 - Bản quyền thuộc về Nhóm 11 - Lớp WE24-01 | Website phục vụ mục đích học tập bài tập lớn.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Các hàm mở/đóng Popups Xem Chi Tiết
+        function showPmsi14() { document.getElementById("popupPmsi14").style.display = "block"; }
+        function closePmsi14() { document.getElementById("popupPmsi14").style.display = "none"; }
+        
+        function showP3405() { document.getElementById("popupP3405").style.display = "block"; }
+        function closeP3405() { document.getElementById("popupP3405").style.display = "none"; }
+        
+        function showP1403() { document.getElementById("popupP1403").style.display = "block"; }
+        function closeP1403() { document.getElementById("popupP1403").style.display = "none"; }
+        
+        function showMSIPrestige() { document.getElementById("popupPrestige").style.display = "block"; }
+        function closeMSIPrestige() { document.getElementById("popupPrestige").style.display = "none"; }
+
+        // Hàm AJAX đẩy sản phẩm từ trang chủ vào API PHP (Có cấu hình CORS để fix lỗi chạy trực tiếp trên file)
+        async function addToCartFromHome(id, name, price, image) {
+            try {
+                const response = await fetch('http://localhost/nhom_11/api/api_add_to_cart.php', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        id: id, 
+                        name: name, 
+                        price: price, 
+                        image: image, 
+                        quantity: 1 
+                    })
+                });
+                
+                const result = await response.json();
+                if (result.status === "success") {
+                    alert(`🛒 Đã thêm vào giỏ hàng thành công:\n📦 ${name}`);
+                } else {
+                    alert("Lỗi từ hệ thống: " + result.message);
+                }
+            } catch (error) {
+                console.error("Lỗi gửi dữ liệu giỏ hàng:", error);
+                alert("Không thể kết nối đến máy chủ Localhost Apache. Vui lòng chạy qua link http://localhost/nhom_11/index.html");
+            }
+        }
+    </script>
+</body>
+</html>
