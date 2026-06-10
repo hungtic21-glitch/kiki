@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán Đơn Hàng - 268 Gaming</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .checkout-wrapper {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 50px;
+            color: #fff;
+            padding: 20px;
+        }
+        .checkout-form {
+            flex: 2;
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 42, 95, 0.2);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        .order-summary {
+            flex: 1;
+            background-color: #111;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #00f2fe;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background-color: #222;
+            color: #fff;
+            box-sizing: border-box;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #222;
+        }
+        .total-price {
+            font-size: 20px;
+            color: #00f2fe;
+            font-weight: bold;
+        }
+        .btn-checkout {
+            background: linear-gradient(135deg, #ff2a5f 0%, #ff758c 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+        .btn-checkout:hover {
+            box-shadow: 0 0 15px rgba(255, 42, 95, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-link">
+           <div class="logo logo-image">
+               <img src="image/download (1).jfif" alt="268 Gaming Logo" style="height: 100px; width: auto; display: block;">
+           </div>
+        </a>
+        <nav class="desktop-nav">
+            <a href="index.html">Trang Chủ</a>
+            <a href="products.html">Sản Phẩm</a>
+            <a href="sale.html" style="color: #ff2a5f; font-weight: bold;">Săn Sale 🔥</a>
+            <a href="cart.html">Giỏ Hàng</a>
+            <a href="contact.html">Phản Hồi</a>
+            <a href="login.html">Đăng Nhập</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="section-title" style="color: #fff; font-size: 28px; font-weight: bold; margin: 30px 0; text-align: center;">TIẾN HÀNH THANH TOÁN</div>
+        
+        <div class="checkout-wrapper">
+            <div class="checkout-form">
+                <h3><i class="fa-solid fa-truck-fast"></i> Thông Tin Nhận Hàng</h3>
+                <hr style="border-color: #222; margin-bottom: 20px;">
+                
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label>Họ và tên người nhận</label>
+                        <input type="text" id="customer_name" placeholder="Ví dụ: Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <input type="tel" id="phone" placeholder="Ví dụ: 0987654321" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ giao hàng</label>
+                        <input type="text" id="address" placeholder="Số nhà, tên đường, quận/huyện, tỉnh/thành phố" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phương thức thanh toán</label>
+                        <select id="payment_method">
+                            <option value="COD">Thanh toán khi nhận hàng (COD)</option>
+                            <option value="Banking">Chuyển khoản ngân hàng (Qua mã QR)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-checkout">XÁC NHẬN ĐẶT HÀNG</button>
+                </form>
+            </div>
+
+            <div class="order-summary">
+                <h3><i class="fa-solid fa-receipt"></i> Đơn Hàng Của Bạn</h3>
+                <hr style="border-color: #222; margin-bottom: 20px;">
+                <div id="summary-items-list">
+                    </div>
+                <div class="summary-item" style="border: none; margin-top: 20px;">
+                    <strong>Tổng thanh toán:</strong>
+                    <span class="total-price" id="total-amount">0 đ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 50%, #1a0a0f 100%); border-top: 3px solid #ff2a5f; margin-top: 60px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, #ff2a5f, #00f2fe, #ff2a5f, transparent); animation: slideNeon 3s linear infinite;"></div>
+        
+        <div style="max-width: 1400px; margin: 0 auto; padding: 60px 40px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; position: relative; z-index: 1;">
+            <div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <img src="image/download%20(1).jfif" alt="268 Gaming" style="height: 50px; width: auto; filter: drop-shadow(0 0 10px rgba(255,42,95,0.5));">
+                    <span style="font-size: 24px; font-weight: bold; background: linear-gradient(135deg, #ff2a5f, #00f2fe); -webkit-background-clip: text; background-clip: text; color: transparent;">268 GAMING</span>
+                </div>
+                <p style="color: #aaa; line-height: 1.6; font-size: 14px;">Đỉnh cao công nghệ gaming - Trang bị tối thượng cho game thủ chính hiệu. Cam kết chính hãng 100%, bảo hành tận tâm.</p>
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-youtube"></i></a>
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 style="color: #ff2a5f; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; position: relative;">LIÊN KẾT<span style="position: absolute; bottom: -8px; left: 0; width: 40px; height: 2px; background: linear-gradient(90deg, #ff2a5f, #00f2fe);"></span></h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;"><a href="index.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Trang Chủ</a></li>
+                    <li style="margin-bottom: 12px;"><a href="products.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Sản Phẩm</a></li>
+                    <li style="margin-bottom: 12px;"><a href="sale.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Săn Sale 🔥</a></li>
+                    <li style="margin-bottom: 12px;"><a href="cart.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Giỏ Hàng</a></li>
+                    <li style="margin-bottom: 12px;"><a href="contact.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Phản Hồi</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 style="color: #ff2a5f; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; position: relative;">HỖ TRỢ<span style="position: absolute; bottom: -8px; left: 0; width: 40px; height: 2px; background: linear-gradient(90deg, #ff2a5f, #00f2fe);"></span></h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Chính Sách Bảo Hành</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Chính Sách Đổi Trả</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Hướng Dẫn Mua Hàng</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Phương Thức Thanh Toán</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Câu Hỏi Thường Gặp</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 style="color: #ff2a5f; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; position: relative;">LIÊN HỆ<span style="position: absolute; bottom: -8px; left: 0; width: 40px; height: 2px; background: linear-gradient(90deg, #ff2a5f, #00f2fe);"></span></h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-map-marker-alt" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> 123 Đường Gaming, Quận 1, TP.HCM</li>
+                    <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-phone-alt" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> 1900 2682</li>
+                    <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-envelope" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> support@268gaming.com</li>
+                    <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-clock" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> 8:00 - 22:00 (T2 - CN)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="border-top: 1px solid rgba(255,42,95,0.2); padding: 20px; text-align: center; background: rgba(0,0,0,0.5);">
+            <p style="color: #666; font-size: 12px;">&copy; 2026 - Bản quyền thuộc về Nhóm 11 - Lớp WE24-01 | 268 GAMING - Đẳng cấp game thủ Việt <i class="fas fa-gamepad" style="color: #ff2a5f; margin: 0 5px;"></i></p>
+        </div>
+    </footer>
+
+    <script>
+        let currentCart = []; // Biến lưu trữ giỏ hàng hiện tại
+
+        document.addEventListener("DOMContentLoaded", function () {
+            loadOrderSummary();
+
+            // Lắng nghe sự kiện bấm nút Đặt Hàng
+            const checkoutForm = document.getElementById("checkoutForm");
+            if (checkoutForm) {
+                checkoutForm.addEventListener("submit", handleCheckout);
+            }
+        });
+
+        // 1. Hàm lấy sản phẩm từ giỏ hàng (Session) đổ ra màn hình tóm tắt
+        async function loadOrderSummary() {
+            const summaryList = document.getElementById("summary-items-list");
+            const totalAmountSpan = document.getElementById("total-amount");
+            
+            try {
+                // Gọi API lấy dữ liệu giỏ hàng hiện tại từ session
+                const response = await fetch('http://localhost/nhom_11/api/api_get_cart.php');
+                const result = await response.json();
+
+                if (result.status === "success" && result.data.length > 0) {
+                    currentCart = result.data;
+                    summaryList.innerHTML = "";
+                    let totalMoney = 0;
+
+                    currentCart.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        totalMoney += itemTotal;
+
+                        summaryList.innerHTML += `
+                            <div class="summary-item">
+                                <div>
+                                    <span style="font-weight:600;">${item.name}</span>
+                                    <br><small style="color:#aaa;">SL: ${item.quantity} x ${new Intl.NumberFormat('vi-VN').format(item.price)}đ</small>
+                                </div>
+                                <span>${new Intl.NumberFormat('vi-VN').format(itemTotal)}đ</span>
+                            </div>
+                        `;
+                    });
+
+                    totalAmountSpan.innerText = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalMoney);
+                } else {
+                    summaryList.innerHTML = `<p style="color: #aaa; text-align:center;">Giỏ hàng trống rỗng. Hãy quay lại mua hàng!</p>`;
+                    document.querySelector(".btn-checkout").disabled = true;
+                    document.querySelector(".btn-checkout").style.background = "#555";
+                }
+            } catch (error) {
+                console.error("Lỗi tải tóm tắt đơn hàng:", error);
+            }
+        }
+
+        // 2. Hàm gửi dữ liệu đặt hàng lên API lưu vào Database
+        async function handleCheckout(e) {
+            e.preventDefault(); // Ngăn load lại trang
+
+            if (currentCart.length === 0) {
+                alert("Giỏ hàng của bạn đang trống!");
+                return;
+            }
+
+            // Thu thập thông tin từ các ô Input
+            const checkoutData = {
+                customer_name: document.getElementById("customer_name").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
+                address: document.getElementById("address").value.trim(),
+                payment_method: document.getElementById("payment_method").value,
+                cart: currentCart // Gửi kèm toàn bộ giỏ hàng
+            };
+
+            try {
+                // Gọi API tạo đơn hàng (Đã cấu hình chung thư mục api/)
+                const response = await fetch('http://localhost/nhom_11/api/api_checkout.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(checkoutData)
+                });
+
+                const result = await response.json();
+
+                if (result.status === "success") {
+                    alert(`🎉 ĐẶT HÀNG THÀNH CÔNG!\nMã đơn hàng của bạn là: #${result.order_id}\nCám ơn bạn đã ủng hộ 268 Gaming!`);
+                    // Đặt hàng xong chuyển hướng thẳng về trang chủ
+                    window.location.href = "index.html";
+                } else {
+                    alert("❌ Đặt hàng thất bại: " + result.message);
+                }
+            } catch (error) {
+                console.error("Lỗi đồng bộ đặt hàng:", error);
+                alert("Không thể kết nối đến máy chủ thanh toán. Hãy kiểm tra lại Apache/MySQL!");
+            }
+        }
+    </script>
+</body>
+</html>
