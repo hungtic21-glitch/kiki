@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ - 268 Gaming</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        #auth-section {
+            display: flex;
+            align-items: center;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 42, 95, 0.1);
+            padding: 5px 15px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 42, 95, 0.3);
+        }
+        .user-name {
+            color: #ff2a5f;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .user-name i {
+            margin-right: 8px;
+        }
+        .logout-btn {
+            background: #ff2a5f;
+            color: #fff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .logout-btn:hover {
+            background: #fff;
+            color: #ff2a5f;
+        }
+        .auth-link {
+            color: #fff;
+            text-decoration: none;
+        }
+        .auth-link:hover {
+            color: #ff2a5f;
+        }
+        @media (max-width: 992px) {
+            .desktop-nav { flex-direction: column; gap: 10px; }
+            .user-info { margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-link">
+            <div class="logo logo-image">
+                <img src="image/download%20(1).jfif" alt="268 Gaming Logo" style="height: 100px; width: auto; display: block;">
+            </div>
+        </a>
+        <nav class="desktop-nav">
+            <a href="index.html">Trang Chủ</a>
+            <a href="products.html">Sản Phẩm</a>
+            <a href="sale.html" style="color: #ff2a5f; font-weight: bold;">Săn Sale 🔥</a>
+            <a href="cart.html">Giỏ Hàng</a>
+            <a href="contact.html">Phản Hồi</a>
+            <div id="auth-section">
+                <a href="login.html" class="auth-link">Đăng Nhập</a>
+            </div>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-title">Kết Nối Với 268 Gaming</div>
+        
+        <div class="contact-wrapper" style="display: flex; flex-direction: column; gap: 30px; max-width: 700px; margin: 0 auto; padding-bottom: 40px;">
+            
+            <div class="contact-form-section" style="background: #111; padding: 30px; border-radius: 12px; border: 1px solid #ff2a5f;">
+                <h2 style="color: #fff; text-align: center; font-size: 1.4rem; margin-bottom: 20px;">GỬI Ý KIẾN GÓP Ý</h2>
+                
+                <form id="feedbackForm" onsubmit="sendFeedback(event)">
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="color: #aaa;">Họ và Tên</label>
+                        <input type="text" id="fullname" required style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 6px;">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="color: #aaa;">Địa chỉ Email</label>
+                        <input type="email" id="email" required style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 6px;">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="color: #aaa;">Số Điện Thoại</label>
+                        <input type="tel" id="phone" required style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 6px;">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="color: #aaa;">Nội dung lời nhắn / góp ý</label>
+                        <textarea id="message" rows="5" required style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 6px;"></textarea>
+                    </div>
+                    
+                    <button type="submit" style="width: 100%; padding: 14px; background: #ff2a5f; color: #fff; border: none; font-weight: bold; border-radius: 6px; cursor: pointer;">
+                        <i class="fa-solid fa-paper-plane"></i> Gửi Phản Hồi Ngay
+                    </button>
+                </form>
+            </div>
+
+            <div class="feedback-display-section" style="background: #111; padding: 25px; border-radius: 12px; border: 1px solid #00f2fe;">
+                <h3 style="color: #00f2fe; margin-bottom: 15px;"><i class="fa-solid fa-comments"></i> Lời nhắn mới nhất</h3>
+                <div id="feedbackList" style="display: flex; flex-direction: column; gap: 12px;">
+                    <p style="color: #555; text-align: center;">Đang tải...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer style="background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 50%, #1a0a0f 100%); border-top: 3px solid #ff2a5f; margin-top: 60px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, #ff2a5f, #00f2fe, #ff2a5f, transparent); animation: slideNeon 3s linear infinite;"></div>
+        
+        <div style="max-width: 1400px; margin: 0 auto; padding: 60px 40px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; position: relative; z-index: 1;">
+            <div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <img src="image/download%20(1).jfif" alt="268 Gaming" style="height: 50px; width: auto; filter: drop-shadow(0 0 10px rgba(255,42,95,0.5));">
+                    <span style="font-size: 24px; font-weight: bold; background: linear-gradient(135deg, #ff2a5f, #00f2fe); -webkit-background-clip: text; background-clip: text; color: transparent;">268 GAMING</span>
+                </div>
+                <p style="color: #aaa; line-height: 1.6; font-size: 14px;">Đỉnh cao công nghệ gaming - Trang bị tối thượng cho game thủ chính hiệu. Cam kết chính hãng 100%, bảo hành tận tâm.</p>
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-youtube"></i></a>
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 style="color: #ff2a5f; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; position: relative;">LIÊN KẾT<span style="position: absolute; bottom: -8px; left: 0; width: 40px; height: 2px; background: linear-gradient(90deg, #ff2a5f, #00f2fe);"></span></h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;"><a href="index.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Trang Chủ</a></li>
+                    <li style="margin-bottom: 12px;"><a href="products.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Sản Phẩm</a></li>
+                    <li style="margin-bottom: 12px;"><a href="sale.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Săn Sale 🔥</a></li>
+                    <li style="margin-bottom: 12px;"><a href="cart.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Giỏ Hàng</a></li>
+                    <li style="margin-bottom: 12px;"><a href="contact.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Phản Hồi</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 style="color: #ff2a5f; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; position: relative;">HỖ TRỢ<span style="position: absolute; bottom: -8px; left: 0; width: 40px; height: 2px; background: linear-gradient(90deg, #ff2a5f, #00f2fe);"></span></h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Chính Sách Bảo Hành</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Chính Sách Đổi Trả</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Hướng Dẫn Mua Hàng</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Phương Thức Thanh Toán</a></li>
+                    <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Câu Hỏi Thường Gặp</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 style="color: #ff2a5f; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; position: relative;">LIÊN HỆ<span style="position: absolute; bottom: -8px; left: 0; width: 40px; height: 2px; background: linear-gradient(90deg, #ff2a5f, #00f2fe);"></span></h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-map-marker-alt" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> 123 Đường Gaming, Quận 1, TP.HCM</li>
+                    <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-phone-alt" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> 1900 2682</li>
+                    <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-envelope" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> support@268gaming.com</li>
+                    <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-clock" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> 8:00 - 22:00 (T2 - CN)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="border-top: 1px solid rgba(255,42,95,0.2); padding: 20px; text-align: center; background: rgba(0,0,0,0.5);">
+            <p style="color: #666; font-size: 12px;">&copy; 2026 - Bản quyền thuộc về Nhóm 11 - Lớp WE24-01 | 268 GAMING - Đẳng cấp game thủ Việt <i class="fas fa-gamepad" style="color: #ff2a5f; margin: 0 5px;"></i></p>
+        </div>
+    </footer>
+
+    <script>
+        function updateAuthUI() {
+            const authSection = document.getElementById('auth-section');
+            if (!authSection) return;
+            const userData = localStorage.getItem('user');
+            if (userData) {
+                try {
+                    const user = JSON.parse(userData);
+                    if (user.logged_in === true || user.is_guest === true) {
+                        authSection.innerHTML = `
+                            <div class="user-info">
+                                <span class="user-name"><i class="fa-regular fa-user"></i> ${user.full_name}</span>
+                                <button class="logout-btn" onclick="handleLogout()"><i class="fa-solid fa-sign-out-alt"></i> Đăng Xuất</button>
+                            </div>
+                        `;
+                        return;
+                    }
+                } catch(e) {}
+            }
+            authSection.innerHTML = '<a href="login.html" class="auth-link">Đăng Nhập</a>';
+        }
+
+        window.handleLogout = function() {
+            localStorage.removeItem('user');
+            alert('👋 Đã đăng xuất!');
+            window.location.href = 'index.html';
+        }
+
+        async function loadFeedbacks() {
+            const listDiv = document.getElementById("feedbackList");
+            try {
+                const response = await fetch('http://localhost/nhom_11/api/api_contact.php');
+                const result = await response.json();
+                if (result.status === "success" && result.data.length > 0) {
+                    listDiv.innerHTML = "";
+                    result.data.forEach(item => {
+                        listDiv.innerHTML += `
+                            <div style="background: #1a1a1a; padding: 12px 15px; border-left: 3px solid #ff2a5f; border-radius: 4px;">
+                                <strong style="color: #00f2fe;">${item.fullname}</strong>
+                                <span style="color: #555; font-size: 0.8rem; float: right;">${item.created_at}</span>
+                                <p style="color: #ccc; margin-top: 5px;">${item.message}</p>
+                            </div>
+                        `;
+                    });
+                } else {
+                    listDiv.innerHTML = `<p style="color: #666; text-align: center;">Hãy là người đầu tiên để lại ý kiến!</p>`;
+                }
+            } catch (error) {
+                console.error("Lỗi tải:", error);
+            }
+        }
+
+        async function sendFeedback(event) {
+            event.preventDefault();
+            const feedbackData = {
+                fullname: document.getElementById('fullname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
+            };
+            try {
+                const response = await fetch('http://localhost/nhom_11/api/api_contact.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(feedbackData)
+                });
+                const result = await response.json();
+                if (result.status === "success") {
+                    alert("🎉 Gửi phản hồi thành công!");
+                    document.getElementById('feedbackForm').reset();
+                    loadFeedbacks();
+                } else {
+                    alert("❌ Lỗi: " + result.message);
+                }
+            } catch (error) {
+                alert("Lỗi kết nối server!");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            updateAuthUI();
+            loadFeedbacks();
+        });
+    </script>
+</body>
+</html>

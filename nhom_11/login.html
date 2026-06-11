@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng Nhập - 268 Gaming</title>
+<link rel="stylesheet" href="assets/css/login.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    .login-container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    }
+    .login-box {
+        background: #111;
+        padding: 40px;
+        border-radius: 16px;
+        border: 1px solid #ff2a5f;
+        box-shadow: 0 0 30px rgba(255,42,95,0.2);
+        width: 100%;
+        max-width: 450px;
+        transition: 0.3s;
+    }
+    .login-box:hover {
+        box-shadow: 0 0 40px rgba(255,42,95,0.4);
+    }
+    .logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .logo img {
+        height: 80px;
+        width: auto;
+    }
+    h1 {
+        color: #ff2a5f;
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .input-box {
+        display: flex;
+        align-items: center;
+        background: #000;
+        border: 1px solid #333;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        padding: 5px 15px;
+        transition: 0.3s;
+    }
+    .input-box:focus-within {
+        border-color: #ff2a5f;
+        box-shadow: 0 0 8px rgba(255,42,95,0.3);
+    }
+    .input-box i {
+        color: #ff2a5f;
+        font-size: 18px;
+        margin-right: 12px;
+    }
+    .input-box input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: #fff;
+        padding: 14px 0;
+        font-size: 16px;
+        outline: none;
+    }
+    .input-box input::placeholder {
+        color: #666;
+    }
+    .btn {
+        width: 100%;
+        padding: 14px;
+        background: #ff2a5f;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+    .btn:hover {
+        background: #fff;
+        color: #ff2a5f;
+        box-shadow: 0 0 15px rgba(255,42,95,0.5);
+    }
+    .register-link {
+        text-align: center;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #222;
+    }
+    .register-link p {
+        color: #aaa;
+        font-size: 14px;
+    }
+    .register-link a {
+        color: #ff2a5f;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .register-link a:hover {
+        text-decoration: underline;
+        color: #fff;
+    }
+    .guest-btn {
+        width: 100%;
+        padding: 12px;
+        background: transparent;
+        color: #ff2a5f;
+        border: 2px solid #ff2a5f;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 15px;
+    }
+    .guest-btn:hover {
+        background: #ff2a5f;
+        color: #fff;
+    }
+    .or-divider {
+        text-align: center;
+        margin: 20px 0;
+        position: relative;
+    }
+    .or-divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #333;
+    }
+    .or-divider span {
+        background: #111;
+        padding: 0 15px;
+        position: relative;
+        color: #666;
+        font-size: 14px;
+    }
+    .forgot-password {
+        text-align: right;
+        margin-top: -15px;
+        margin-bottom: 20px;
+    }
+    .forgot-password a {
+        color: #888;
+        font-size: 13px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    .forgot-password a:hover {
+        color: #ff2a5f;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-link">
+           <div class="logo logo-image">
+               <img src="image/download%20(1).jfif" alt="268 Gaming Logo" style="height: 100px; width: auto; display: block;">
+           </div>
+        </a>
+        <nav class="desktop-nav">
+            <a href="index.html">Trang Chủ</a>
+            <a href="products.html">Sản Phẩm</a>
+            <a href="sale.html" style="color: #ff2a5f; font-weight: bold;">Săn Sale 🔥</a>
+            <a href="cart.html">Giỏ Hàng</a>
+            <a href="contact.html">Phản Hồi</a>
+            <a href="login.html" class="auth-link">Đăng Nhập</a>
+            <div id="auth-section"></div>
+            </div>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle-btn">
+        </div>
+    </header>
+<div class="login-container">
+    <div class="login-box">
+        <div class="logo">
+            <img src="image/download%20(1).jfif" alt="268 Gaming Logo">
+        </div>
+
+        <h1>ĐĂNG NHẬP</h1>
+
+        <form id="loginForm">
+            <div class="input-box">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="email" placeholder="Email tài khoản" required>
+            </div>
+
+            <div class="input-box">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="Mật khẩu bảo mật" required>
+            </div>
+
+            <div class="forgot-password">
+                <a href="forgot-password.html">Quên mật khẩu?</a>
+            </div>
+
+            <button type="submit" class="btn">ĐĂNG NHẬP</button>
+        </form>
+
+        <div class="or-divider">
+            <span>HOẶC</span>
+        </div>
+
+        <button class="guest-btn" id="guestBtn">
+            <i class="fa-solid fa-user-astronaut"></i> TRUY CẬP NHANH (KHÁCH)
+        </button>
+
+        <div class="register-link">
+            <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.getElementById("loginForm");
+        const guestBtn = document.getElementById("guestBtn");
+
+        // Đăng nhập bình thường
+        if (loginForm) {
+            loginForm.addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value;
+
+                if (!email || !password) {
+                    alert("❌ Vui lòng nhập đầy đủ email và mật khẩu!");
+                    return;
+                }
+
+                const loginData = {
+                    email: email,
+                    password: password
+                };
+
+                try {
+                    // DÙNG ĐƯỜNG DẪN TUYỆT ĐỐI ĐẾN XAMPP
+                    const response = await fetch('http://localhost/nhom_11/api/api_login.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(loginData)
+                    });
+
+                    const result = await response.json();
+                    console.log("Kết quả login:", result);
+
+                    if (result.status === "success") {
+                        const userData = {
+                            id: result.user.id,
+                            full_name: result.user.full_name,
+                            email: result.user.email,
+                            is_guest: false,
+                            logged_in: true
+                        };
+                        localStorage.setItem('user', JSON.stringify(userData));
+                        
+                        alert("✅ Đăng nhập thành công!");
+                        window.location.href = "index.html";
+                    } else {
+                        alert("❌ Lỗi: " + result.message);
+                    }
+                } catch (error) {
+                    console.error("Lỗi đăng nhập:", error);
+                    alert("Không thể kết nối đến máy chủ! Hãy chắc chắn XAMPP đang chạy ở http://localhost");
+                }
+            });
+        }
+
+        // Đăng nhập khách
+        if (guestBtn) {
+            guestBtn.addEventListener("click", function () {
+                const guestData = {
+                    id: 0,
+                    full_name: 'Khách',
+                    email: 'guest@268gaming.com',
+                    is_guest: true,
+                    logged_in: true
+                };
+                localStorage.setItem('user', JSON.stringify(guestData));
+                alert("👋 Bạn đang truy cập với tư cách Khách!");
+                window.location.href = "index.html";
+            });
+        }
+    });
+</script>
+</body>
+</html>

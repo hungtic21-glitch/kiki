@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>268 Gaming - Thế Giới Gear Chuyên Nghiệp</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        #auth-section {
+            display: flex;
+            align-items: center;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 42, 95, 0.1);
+            padding: 5px 15px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 42, 95, 0.3);
+        }
+        .user-name {
+            color: #ff2a5f;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .user-name i {
+            margin-right: 8px;
+        }
+        .logout-btn {
+            background: #ff2a5f;
+            color: #fff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .logout-btn:hover {
+            background: #fff;
+            color: #ff2a5f;
+            transform: scale(1.05);
+        }
+        .auth-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .auth-link:hover {
+            color: #ff2a5f;
+        }
+        @media (max-width: 992px) {
+            .desktop-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .user-info {
+                margin-top: 10px;
+            }
+        }
+        @keyframes slideNeon {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,42,95,0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255,42,95,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,42,95,0); }
+        }
+        #chatBox {
+            animation: fadeInUp 0.3s ease;
+        }
+        #chatToggle {
+            animation: pulse 2s infinite;
+        }
+        #chatToggle:hover {
+            animation: none;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255,42,95,0.8);
+        }
+        .message-user {
+            justify-content: flex-end;
+        }
+        .message-user div:last-child {
+            background: #ff2a5f;
+            border-radius: 12px;
+            border-top-right-radius: 4px;
+        }
+        .message-user p {
+            color: #fff;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff2a5f;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-link">
+        <div class="logo logo-image">
+            <img src="image/download%20(1).jfif" alt="268 Gaming Logo" style="height: 100px; width: auto; display: block;">
+        </div>
+        </a>
+        <nav class="desktop-nav">
+            <a href="index.html">Trang Chủ</a>
+            <a href="products.html">Sản Phẩm</a>
+            <a href="sale.html" style="color: #ff2a5f; font-weight: bold;">Săn Sale 🔥</a>
+            <a href="cart.html">Giỏ Hàng</a>
+            <a href="contact.html">Phản Hồi</a>
+            <div id="auth-section">
+                <a href="login.html" class="auth-link">Đăng Nhập</a>
+            </div>
+        </nav>
+        <div class="menu-toggle" id="menu-toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+<div class="hero-banner">
+    <h1>BẬT CHẾ ĐỘ CHIẾN GAME<br><span>LÊN ĐỒ CỰC CHẤT</span></h1>
+    <p>Tự hào là hệ thống phân phối thiết bị ngoại vi chuyên nghiệp hàng đầu. Vũ trang ngay hôm nay để làm chủ mọi trận combat!</p>
+</div>
+
+<div class="container">
+    <div class="search-container" style="max-width: 500px; margin: 30px auto; position: relative;">
+        <input type="text" id="productSearch" onkeyup="searchProducts()" placeholder="🔍 Nhập tên laptop cần tìm kiếm..." style="width: 100%; padding: 14px 20px; background: #111; border: 2px solid #ff2a5f; color: #fff; border-radius: 30px; font-size: 1rem; outline: none;">
+    </div>
+
+    <div class="section-title">Sản Phẩm Nổi Bật</div>
+    
+    <p id="noProductMsg" style="display: none; color: #ff4757; text-align: center; font-weight: bold; margin: 20px 0;">❌ Không tìm thấy laptop nào khớp!</p>
+
+    <div class="product-grid" id="productGrid">
+        <div class="product-card">
+            <img src="image/msi_modern_14_f13mg_bac_01_66ddd_4e8c1cfbdc6e42309ebb2a32372c638d_grande.png" alt="Laptop MSI">
+            <h3>Laptop MSI Modern 14 F13MG 466VN</h3>
+            <div class="price">14.190.000₫</div>
+            <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                <button class="buy-btn" onclick="showPmsi14()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">XEM CHI TIẾT</button>
+                <button class="btn-icon-cart" onclick="addToCartFromHome(1, 'Laptop MSI Modern 14 F13MG 466VN', 14190000, 'image/msi_modern_14_f13mg_bac_01_66ddd_4e8c1cfbdc6e42309ebb2a32372c638d_grande.png')" style="flex: 1; padding: 10px; background: #ff2a5f; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">🛒 MUA</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="image/laptop-asus-expertbook-p3-p3405cva-nz0027w-1_c8c90bddf46c42a491694d4d5a4396d2_grande.jpg" alt="Laptop Asus P3">
+            <h3>Laptop Asus ExpertBook P3 P3405CVA-NZ0027W</h3>
+            <div class="price">18.990.000₫</div>
+            <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                <button class="buy-btn" onclick="showP3405()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">XEM CHI TIẾT</button>
+                <button class="btn-icon-cart" onclick="addToCartFromHome(2, 'Laptop Asus ExpertBook P3 P3405CVA-NZ0027W', 18990000, 'image/laptop-asus-expertbook-p3-p3405cva-nz0027w-1_c8c90bddf46c42a491694d4d5a4396d2_grande.jpg')" style="flex: 1; padding: 10px; background: #ff2a5f; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">🛒 MUA</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="image/laptop-asus-expertbook-p1403cva-c5h16-50w-1_7b1ab501dd6b44bc822f0fcfc8d15315_grande.jpg" alt="Laptop Asus P1403">
+            <h3>Laptop ASUS ExpertBook P1403CVA-C5H16-50W</h3>
+            <div class="price">25.990.000₫</div>
+            <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                <button class="buy-btn" onclick="showP1403()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">XEM CHI TIẾT</button>
+                <button class="btn-icon-cart" onclick="addToCartFromHome(3, 'Laptop ASUS ExpertBook P1403CVA-C5H16-50W', 25990000, 'image/laptop-asus-expertbook-p1403cva-c5h16-50w-1_7b1ab501dd6b44bc822f0fcfc8d15315_grande.jpg')" style="flex: 1; padding: 10px; background: #ff2a5f; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">🛒 MUA</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="image/ava_f4961f3432f84674b7d37c5fbeb3aa17_grande.png" alt="Laptop MSI Prestige">
+            <h3>Laptop MSI Prestige 13 AI Evo A1MG 062VN</h3>
+            <div class="price">32.990.000₫</div>
+            <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                <button class="buy-btn" onclick="showMSIPrestige()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">XEM CHI TIẾT</button>
+                <button class="btn-icon-cart" onclick="addToCartFromHome(4, 'Laptop MSI Prestige 13 AI Evo A1MG 062VN', 32990000, 'image/ava_f4961f3432f84674b7d37c5fbeb3aa17_grande.png')" style="flex: 1; padding: 10px; background: #ff2a5f; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">🛒 MUA</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="floating-cart" onclick="location.href='cart.html'" title="Xem giỏ hàng" style="position: fixed; bottom: 20px; right: 20px; background: #ff2a5f; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 999;">
+    <div style="color: #fff; font-size: 1.5rem;">🛒</div>
+</div>
+
+<!-- Popups -->
+<div id="popupPmsi14" class="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999;">
+    <div class="popup-content" style="background:#1a1a1a; padding:30px; max-width:450px; margin:50px auto; border-radius:12px; border:1px solid #ff2a5f; text-align:center; color:#fff; position: relative;">
+        <span class="close-btn" onclick="closePmsi14()" style="position: absolute; top: 15px; right: 20px; cursor:pointer; font-size:2rem; color: #aaa;">&times;</span>
+        <img src="image/msi_modern_14_f13mg_bac_01_66ddd_4e8c1cfbdc6e42309ebb2a32372c638d_grande.png" style="width:180px; background: #fff; padding: 10px; border-radius: 8px;">
+        <h2>Laptop MSI Modern 14</h2>
+        <div class="popup-price" style="color:#ff2a5f; font-weight:bold;">14.190.000₫</div>
+        <div style="text-align: left; background: #222; padding: 15px; border-radius: 8px; margin-top: 10px;">
+            <p>• Dòng laptop văn phòng mỏng nhẹ</p>
+            <p>• Chip Intel Core i3/i5 thế hệ 12/13</p>
+            <p>• RAM 8GB/16GB DDR5</p>
+            <p>• Màn hình 14" Full HD IPS</p>
+        </div>
+    </div>
+</div>
+
+<div id="popupP3405" class="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999;">
+    <div class="popup-content" style="background:#1a1a1a; padding:30px; max-width:450px; margin:50px auto; border-radius:12px; border:1px solid #ff2a5f; text-align:center; color:#fff; position: relative;">
+        <span class="close-btn" onclick="closeP3405()" style="position: absolute; top: 15px; right: 20px; cursor:pointer; font-size:2rem; color: #aaa;">&times;</span>
+        <img src="image/laptop-asus-expertbook-p3-p3405cva-nz0027w-1_c8c90bddf46c42a491694d4d5a4396d2_grande.jpg" style="width:180px; background: #fff; padding: 10px; border-radius: 8px;">
+        <h2>ASUS ExpertBook P3</h2>
+        <div class="popup-price" style="color:#ff2a5f; font-weight:bold;">18.990.000₫</div>
+        <div style="text-align: left; background: #222; padding: 15px; border-radius: 8px; margin-top: 10px;">
+            <p>• Đạt chuẩn độ bền quân đội Mỹ</p>
+            <p>• Chip Intel Core i5-1335U</p>
+            <p>• RAM 16GB</p>
+            <p>• Cảm biến vân tay</p>
+        </div>
+    </div>
+</div>
+
+<div id="popupP1403" class="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999;">
+    <div class="popup-content" style="background:#1a1a1a; padding:30px; max-width:450px; margin:50px auto; border-radius:12px; border:1px solid #ff2a5f; text-align:center; color:#fff; position: relative;">
+        <span class="close-btn" onclick="closeP1403()" style="position: absolute; top: 15px; right: 20px; cursor:pointer; font-size:2rem; color: #aaa;">&times;</span>
+        <img src="image/laptop-asus-expertbook-p1403cva-c5h16-50w-1_7b1ab501dd6b44bc822f0fcfc8d15315_grande.jpg" style="width:180px; background: #fff; padding: 10px; border-radius: 8px;">
+        <h2>ASUS ExpertBook P1403</h2>
+        <div class="popup-price" style="color:#ff2a5f; font-weight:bold;">25.990.000₫</div>
+        <div style="text-align: left; background: #222; padding: 15px; border-radius: 8px; margin-top: 10px;">
+            <p>• Màn hình 14" Full HD chống chói</p>
+            <p>• SSD 512GB cực nhanh</p>
+            <p>• Bàn phím chống tràn nước</p>
+            <p>• Bản lề 180 độ</p>
+        </div>
+    </div>
+</div>
+
+<div id="popupPrestige" class="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999;">
+    <div class="popup-content" style="background:#1a1a1a; padding:30px; max-width:450px; margin:50px auto; border-radius:12px; border:1px solid #ff2a5f; text-align:center; color:#fff; position: relative;">
+        <span class="close-btn" onclick="closeMSIPrestige()" style="position: absolute; top: 15px; right: 20px; cursor:pointer; font-size:2rem; color: #aaa;">&times;</span>
+        <img src="image/ava_f4961f3432f84674b7d37c5fbeb3aa17_grande.png" style="width:180px; background: #fff; padding: 10px; border-radius: 8px;">
+        <h2>MSI Prestige 13 AI Evo</h2>
+        <div class="popup-price" style="color:#ff2a5f; font-weight:bold;">32.990.000₫</div>
+        <div style="text-align: left; background: #222; padding: 15px; border-radius: 8px; margin-top: 10px;">
+            <p>• Vi xử lý AI Intel Core Ultra</p>
+            <p>• Trọng lượng siêu nhẹ &lt;1kg</p>
+            <p>• Màn hình OLED 100% DCI-P3</p>
+        </div>
+    </div>
+</div>
+
+<footer style="background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 50%, #1a0a0f 100%); border-top: 3px solid #ff2a5f; margin-top: 60px; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, #ff2a5f, #00f2fe, #ff2a5f, transparent); animation: slideNeon 3s linear infinite;"></div>
+    
+    <div style="max-width: 1400px; margin: 0 auto; padding: 60px 40px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; position: relative; z-index: 1;">
+        <div>
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                <img src="image/download%20(1).jfif" alt="268 Gaming" style="height: 50px; width: auto; filter: drop-shadow(0 0 10px rgba(255,42,95,0.5));">
+                <span style="font-size: 24px; font-weight: bold; background: linear-gradient(135deg, #ff2a5f, #00f2fe); -webkit-background-clip: text; background-clip: text; color: transparent;">268 GAMING</span>
+            </div>
+            <p style="color: #aaa; line-height: 1.6; font-size: 14px;">Đỉnh cao công nghệ gaming - Trang bị tối thượng cho game thủ chính hiệu. Cam kết chính hãng 100%, bảo hành tận tâm.</p>
+            <div style="display: flex; gap: 15px; margin-top: 20px;">
+                <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-tiktok"></i></a>
+                <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-youtube"></i></a>
+                <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f; font-size: 18px; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,42,95,0.3);"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+        
+        <div>
+            <h3 style="color: #ff2a5f; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; position: relative;">LIÊN KẾT<span style="position: absolute; bottom: -8px; left: 0; width: 40px; height: 2px; background: linear-gradient(90deg, #ff2a5f, #00f2fe);"></span></h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 12px;"><a href="index.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Trang Chủ</a></li>
+                <li style="margin-bottom: 12px;"><a href="products.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Sản Phẩm</a></li>
+                <li style="margin-bottom: 12px;"><a href="sale.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Săn Sale 🔥</a></li>
+                <li style="margin-bottom: 12px;"><a href="cart.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Giỏ Hàng</a></li>
+                <li style="margin-bottom: 12px;"><a href="contact.html" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Phản Hồi</a></li>
+            </ul>
+        </div>
+        
+        <div>
+            <h3 style="color: #ff2a5f; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; position: relative;">HỖ TRỢ<span style="position: absolute; bottom: -8px; left: 0; width: 40px; height: 2px; background: linear-gradient(90deg, #ff2a5f, #00f2fe);"></span></h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Chính Sách Bảo Hành</a></li>
+                <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Chính Sách Đổi Trả</a></li>
+                <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Hướng Dẫn Mua Hàng</a></li>
+                <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Phương Thức Thanh Toán</a></li>
+                <li style="margin-bottom: 12px;"><a href="#" style="color: #bbb; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;"><i class="fas fa-chevron-right" style="color: #ff2a5f; font-size: 10px;"></i> Câu Hỏi Thường Gặp</a></li>
+            </ul>
+        </div>
+        
+        <div>
+            <h3 style="color: #ff2a5f; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; position: relative;">LIÊN HỆ<span style="position: absolute; bottom: -8px; left: 0; width: 40px; height: 2px; background: linear-gradient(90deg, #ff2a5f, #00f2fe);"></span></h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-map-marker-alt" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> 123 Đường Gaming, Quận 1, TP.HCM</li>
+                <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-phone-alt" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> 1900 2682</li>
+                <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-envelope" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> support@268gaming.com</li>
+                <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px; color: #bbb; font-size: 14px;"><i class="fas fa-clock" style="width: 32px; height: 32px; background: rgba(255,42,95,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff2a5f;"></i> 8:00 - 22:00 (T2 - CN)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div style="border-top: 1px solid rgba(255,42,95,0.2); padding: 20px; text-align: center; background: rgba(0,0,0,0.5);">
+        <p style="color: #666; font-size: 12px;">&copy; 2026 - Bản quyền thuộc về Nhóm 11 - Lớp WE24-01 | 268 GAMING - Đẳng cấp game thủ Việt <i class="fas fa-gamepad" style="color: #ff2a5f; margin: 0 5px;"></i></p>
+    </div>
+</footer>
+
+<!-- CHAT BOX HỖ TRỢ -->
+<div id="chatWidget" style="position: fixed; bottom: 100px; right: 20px; z-index: 1000;">
+    <div id="chatToggle" style="width: 60px; height: 60px; background: linear-gradient(135deg, #ff2a5f, #ff5f8a); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 20px rgba(255,42,95,0.5); transition: 0.3s;">
+        <i class="fa-regular fa-comment-dots" style="font-size: 28px; color: #fff;"></i>
+    </div>
+    
+    <div id="chatBox" style="display: none; position: absolute; bottom: 70px; right: 0; width: 350px; height: 500px; background: #111; border-radius: 16px; border: 1px solid #ff2a5f; box-shadow: 0 0 30px rgba(0,0,0,0.5); overflow: hidden; flex-direction: column;">
+        <div style="background: linear-gradient(135deg, #ff2a5f, #ff5f8a); padding: 15px; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-regular fa-message" style="color: #fff; font-size: 20px;"></i>
+                <span style="color: #fff; font-weight: bold;">💬 268 GAMING SUPPORT</span>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <i id="minimizeChat" class="fa-regular fa-window-minimize" style="color: #fff; cursor: pointer; font-size: 16px;"></i>
+                <i id="closeChat" class="fa-regular fa-times" style="color: #fff; cursor: pointer; font-size: 16px;"></i>
+            </div>
+        </div>
+        
+        <div id="chatMessages" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                <div style="width: 32px; height: 32px; background: #ff2a5f; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <i class="fa-regular fa-robot" style="color: #fff; font-size: 14px;"></i>
+                </div>
+                <div style="background: #1a1a1a; padding: 10px 14px; border-radius: 12px; border-top-left-radius: 4px; max-width: 80%;">
+                    <span style="color: #ff2a5f; font-weight: bold; font-size: 12px;">268 BOT</span>
+                    <p style="color: #ddd; font-size: 13px; margin-top: 4px;">Chào bro! Tôi có thể giúp gì cho bạn hôm nay? 🎮</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="padding: 15px; border-top: 1px solid #222; display: flex; gap: 10px; background: #0a0a0a;">
+            <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." style="flex: 1; padding: 10px; background: #1a1a1a; border: 1px solid #333; border-radius: 20px; color: #fff; outline: none; font-size: 13px;">
+            <button id="sendChat" style="background: #ff2a5f; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; transition: 0.3s;">
+                <i class="fa-regular fa-paper-plane" style="color: #fff; font-size: 14px;"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // AUTH FUNCTIONS
+    function updateAuthUI() {
+        const authSection = document.getElementById('auth-section');
+        if (!authSection) return;
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            try {
+                const user = JSON.parse(userData);
+                if (user.logged_in === true || user.is_guest === true) {
+                    authSection.innerHTML = `
+                        <div class="user-info">
+                            <span class="user-name"><i class="fa-regular fa-user"></i> ${user.full_name}</span>
+                            <button class="logout-btn" onclick="handleLogout()"><i class="fa-solid fa-sign-out-alt"></i> Đăng Xuất</button>
+                        </div>
+                    `;
+                    return;
+                }
+            } catch(e) {}
+        }
+        authSection.innerHTML = '<a href="login.html" class="auth-link">Đăng Nhập</a>';
+    }
+
+    window.handleLogout = function() {
+        localStorage.removeItem('user');
+        alert('👋 Đã đăng xuất!');
+        window.location.href = 'index.html';
+    }
+
+    function searchProducts() {
+        const input = document.getElementById('productSearch');
+        const searchText = input ? input.value.toLowerCase() : '';
+        const cards = document.querySelectorAll('.product-card');
+        let hasProduct = false;
+        cards.forEach(card => {
+            const title = card.querySelector('h3').innerText.toLowerCase();
+            if (title.includes(searchText)) {
+                card.style.display = '';
+                hasProduct = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        const noMsg = document.getElementById('noProductMsg');
+        if (noMsg) noMsg.style.display = hasProduct ? 'none' : 'block';
+    }
+
+    function showPmsi14() { document.getElementById('popupPmsi14').style.display = 'block'; }
+    function closePmsi14() { document.getElementById('popupPmsi14').style.display = 'none'; }
+    function showP3405() { document.getElementById('popupP3405').style.display = 'block'; }
+    function closeP3405() { document.getElementById('popupP3405').style.display = 'none'; }
+    function showP1403() { document.getElementById('popupP1403').style.display = 'block'; }
+    function closeP1403() { document.getElementById('popupP1403').style.display = 'none'; }
+    function showMSIPrestige() { document.getElementById('popupPrestige').style.display = 'block'; }
+    function closeMSIPrestige() { document.getElementById('popupPrestige').style.display = 'none'; }
+
+    async function addToCartFromHome(id, name, price, image) {
+        try {
+            const response = await fetch('http://localhost/nhom_11/api/api_add_to_cart.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: id, name: name, price: price, image: image, quantity: 1 })
+            });
+            const result = await response.json();
+            if (result.status === "success") {
+                alert(`🛒 Đã thêm "${name}" vào giỏ hàng!`);
+            } else {
+                alert("Lỗi: " + result.message);
+            }
+        } catch (error) {
+            alert("Lỗi kết nối server!");
+        }
+    }
+
+    // CHAT BOX FUNCTIONS
+    (function() {
+        const chatToggle = document.getElementById('chatToggle');
+        const chatBox = document.getElementById('chatBox');
+        const minimizeChat = document.getElementById('minimizeChat');
+        const closeChat = document.getElementById('closeChat');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendChat');
+        const chatMessages = document.getElementById('chatMessages');
+        
+        let isMinimized = false;
+        
+        if (!chatToggle || !chatBox) return;
+        
+        chatToggle.addEventListener('click', () => {
+            if (chatBox.style.display === 'none' || chatBox.style.display === '') {
+                chatBox.style.display = 'flex';
+            } else if (!isMinimized) {
+                chatBox.style.display = 'none';
+            }
+        });
+        
+        if (minimizeChat) {
+            minimizeChat.addEventListener('click', () => {
+                if (isMinimized) {
+                    chatBox.style.height = '500px';
+                    if (chatMessages) chatMessages.style.display = 'flex';
+                    isMinimized = false;
+                } else {
+                    chatBox.style.height = '60px';
+                    if (chatMessages) chatMessages.style.display = 'none';
+                    isMinimized = true;
+                }
+            });
+        }
+        
+        if (closeChat) {
+            closeChat.addEventListener('click', () => {
+                chatBox.style.display = 'none';
+                isMinimized = false;
+                chatBox.style.height = '500px';
+                if (chatMessages) chatMessages.style.display = 'flex';
+            });
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function addMessage(text, isUser = true) {
+            if (!chatMessages) return;
+            const messageDiv = document.createElement('div');
+            messageDiv.style.display = 'flex';
+            messageDiv.style.gap = '10px';
+            messageDiv.style.alignItems = 'flex-start';
+            messageDiv.style.justifyContent = isUser ? 'flex-end' : 'flex-start';
+            messageDiv.style.marginBottom = '8px';
+            
+            if (!isUser) {
+                messageDiv.innerHTML = `
+                    <div style="width: 32px; height: 32px; background: #ff2a5f; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-regular fa-robot" style="color: #fff; font-size: 14px;"></i>
+                    </div>
+                    <div style="background: #1a1a1a; padding: 10px 14px; border-radius: 12px; border-top-left-radius: 4px; max-width: 80%;">
+                        <span style="color: #ff2a5f; font-weight: bold; font-size: 12px;">268 BOT</span>
+                        <p style="color: #ddd; font-size: 13px; margin-top: 4px; margin-bottom: 0;">${escapeHtml(text)}</p>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div style="background: #ff2a5f; padding: 10px 14px; border-radius: 12px; border-top-right-radius: 4px; max-width: 80%;">
+                        <p style="color: #fff; font-size: 13px; margin: 0;">${escapeHtml(text)}</p>
+                    </div>
+                    <div style="width: 32px; height: 32px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fa-regular fa-user" style="color: #fff; font-size: 14px;"></i>
+                    </div>
+                `;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function botReply(message) {
+            const msg = message.toLowerCase();
+            let reply = '';
+            
+            if (msg.includes('chào') || msg.includes('hi') || msg.includes('hello')) {
+                reply = 'Chào bro! Có gì tôi giúp được không? 🎮';
+            } else if (msg.includes('giá') || msg.includes('bao nhiêu')) {
+                reply = 'Bro muốn xem giá sản phẩm nào? Vào mục "Sản Phẩm" để xem chi tiết nhé! 💰';
+            } else if (msg.includes('sale') || msg.includes('giảm giá')) {
+                reply = 'Hiện tại đang có FLASH SALE cực hot! Vào mục "Săn Sale 🔥" để săn deal ngay! 🚀';
+            } else if (msg.includes('bảo hành')) {
+                reply = 'Sản phẩm được bảo hành 12 tháng chính hãng. Hỗ trợ 1 đổi 1 trong 7 ngày nếu lỗi nhà sản xuất! 🔧';
+            } else if (msg.includes('ship') || msg.includes('giao hàng')) {
+                reply = 'Miễn phí ship toàn quốc cho đơn hàng từ 5 triệu. Giao hàng nhanh 1-3 ngày! 📦';
+            } else if (msg.includes('cảm ơn')) {
+                reply = 'Rất vui được giúp bro! Chúc bro săn được deal ngon! ❤️';
+            } else if (msg.includes('hướng dẫn') || msg.includes('cách mua')) {
+                reply = 'Bro chỉ cần chọn sản phẩm, bấm "THÊM VÀO GIỎ", sau đó vào giỏ hàng và thanh toán thôi! 🛒';
+            } else {
+                reply = 'Cảm ơn bro đã quan tâm! Bro có thể xem thêm tại mục "Sản Phẩm" hoặc "Săn Sale" nhé. Nếu cần hỗ trợ thêm, cứ nhắn tôi! 💪';
+            }
+            
+            setTimeout(() => {
+                addMessage(reply, false);
+            }, 500);
+        }
+        
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message === '') return;
+            addMessage(message, true);
+            chatInput.value = '';
+            botReply(message);
+        }
+        
+        if (sendBtn) sendBtn.addEventListener('click', sendMessage);
+        if (chatInput) chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    })();
+
+    document.addEventListener('DOMContentLoaded', function() {
+        updateAuthUI();
+    });
+</script>
+</body>
+</html>
